@@ -1,0 +1,312 @@
+/* =============< fonts >================ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+
+/* =============< variable >================ */
+:root{
+
+--hue-color:240;
+--first-color:hsl(var(--hue-color),53%,59%);
+--title-color:hsl(var(--hue-color),53%,15%);
+--text-color:hsl(var(--hue-color),12%,35%);
+--text-color-light:hsl(var(--hue-color),12%,65%);
+--white-color:#FFF;
+--body-color:hsl(var(--hue-color),24%,94%);
+
+--body-font:'Poppins',san-serif; 
+--biggest-font-size:3rem;    
+--small-font-size: .988rem;
+--smaller-font-size: .80rem;
+--tiny-font-size: .75rem;
+
+--font-medium: 500;
+
+--mb-0-25: 0.25rem;
+--mb-1: 1rem;
+--mb-1-5: 1.5rem;
+--mb-2-5: 2.5rem;
+
+--z-normal: 1;
+--z-tooltip: 10;
+
+}
+
+@media screen and (min-width:986px) {
+    :root{
+    --biggest-font-size:3rem;    
+    --small-font-size: .900rem;
+    --smaller-font-size: .866rem;
+    --tiny-font-size: .75rem;
+    }
+    
+}
+
+
+
+
+
+
+
+/* =============< variable dark theme >================ */
+body.dark-theme{
+--title-color:hsl(var(--hue-color),12%,95%);
+--text-color:hsl(var(--hue-color),12%,75%);
+--body-color:hsl(var(--hue-color),10%,16%);
+}
+
+/* =============< button dark/light >================ */
+
+/*========== Button Dark/Light ==========*/
+.clock_theme {
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+    display: flex;
+    padding: .25rem;
+    border-radius: 50%;
+    box-shadow: inset -1px -1px 1px hsla(var(--hue-color), 0%, 100%, 1), 
+                inset 1px 1px 1px hsla(var(--hue-color), 30%, 86%, 1);
+    color: var(--first-color);
+    cursor: pointer;
+  }
+  
+  /*========== Box shadow Dark theme ==========*/
+  .dark-theme .clock_circle {
+    box-shadow: 6px 6px 16px hsla(var(--hue-color), 8%, 12%, 1), 
+                -6px -6px 16px hsla(var(--hue-color), 8%, 20%, 1), 
+                inset -6px -6px 16px hsla(var(--hue-color), 8%, 20%, 1), 
+                inset 6px 6px 12px hsla(var(--hue-color), 8%, 12%, 1);
+  }
+  
+  .dark-theme .clock_theme {
+    box-shadow: inset -1px -1px 1px hsla(var(--hue-color), 8%, 20%, 1), 
+                inset 1px 1px 1px hsla(var(--hue-color), 8%, 12%, 1);
+  }
+
+/* =============< box shadow dark theme >================ */
+/* =============< BASE >================ */
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0;
+}
+
+body{
+    margin: 0;
+    font-family: var(--body-font);
+    background-color: var(--body-color);
+    color:var(--text-color)
+}
+
+a{
+    text-decoration: none;
+}
+
+
+
+/* =============< resuable css class >================ */
+.container{
+    max-width: 986px;
+    margin-left: var(--mb-1);
+    margin-right: var(--mb-1);
+}
+
+.grid{
+    display: grid;
+}
+
+
+
+
+/* =============< clock >================ */
+.clock_container{
+    height: 100vh;
+    /* width: 200vh; */
+    grid-template-rows: 1fr max-content;
+
+}
+
+.clock_circle{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    box-shadow: -6px -6px 16px var(--white-color),
+                6px 6px 16px hsla(var(--hue-color), 30% , 86% , 1),
+                inset 6px 6px 16px hsla(var(--hue-color), 30% , 86% , 1),
+                inset -6px -6px 16px var(--white-color);
+
+    border-radius: 50%;
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clock_content{
+    align-self: center;
+    row-gap: 3.5rem;
+}
+
+.clock_twelve,
+.clock_nine,
+.clock_six,
+.clock_three{
+    position: absolute;
+    width: 1rem;
+    height: 1px;
+    background-color: var(--text-color-light);
+}
+
+.clock_twelve,
+.clock_six{
+    transform: translateX(-50%) rotate(90deg);
+}
+
+ .clock_twelve{
+    top: 1.25rem;
+    left: 50%;
+}
+
+.clock_three{
+    top: 50%;
+    right: 0.75rem;
+}
+
+.clock_six{
+    bottom: 1.25rem;
+    left: 50%;
+}
+
+.clock_nine{
+    top: 50%;
+    left: 0.75rem;
+}
+
+
+.clock_rounder{
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: var(--first-color);
+    border-radius: 50%;
+    border: 2px solid var(--body-color);
+    z-index: var(--z-tooltip);
+}
+
+
+.clock_hour,
+.clock_minutes,
+.clock_seconds{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+}
+
+.clock_hour{
+    width: 105px;
+    height: 105px;
+}
+
+
+ .clock_hour::before{
+    content: '';
+    position: absolute;
+    background-color: var(--text-color);
+    width: 0.3rem;
+    height: 3rem;
+    border-radius: 0.75rem;
+    z-index: var(--z-normal);
+} 
+
+.clock_minutes{
+    width: 136px;
+    height: 136px;
+}
+
+
+ .clock_minutes::before{
+    content: '';
+    position: absolute;
+    background-color: var(--text-color);
+    width: 0.3rem;
+    height: 4rem;
+    border-radius: 0.75rem;
+    z-index: var(--z-normal);
+} 
+
+.clock_seconds{
+    width: 120px;
+    height: 120px;
+}
+
+
+ .clock_seconds::before{
+    content: '';
+    position: absolute;
+    background-color: rgba(202, 57, 57, 0.897);
+    width: 0.125rem;
+    height: 5rem;
+    border-radius: 0.75rem;
+    z-index: var(--z-normal);
+} 
+
+.clock_logo{
+    width: max-content;
+    justify-self: center;
+    margin-bottom: var(--mb-2-5);
+    font-size: var(--smaller-font-size);
+    font-weight: 800;
+    color: var(--text-color-light);
+    transition: 0.3s;
+}
+
+.clock_logo:hover{
+    color: rgb(219, 16, 67);
+}
+
+
+.clock_text{
+    display: flex;
+    justify-content: center;
+}
+
+.clock_text-Hour,
+.clock_text-Minutes{
+    font-size: var(--biggest-font-size);
+    font-weight: var(--font-medium);
+    color: var(--title-color);
+}
+
+.clock_text-ampm{
+    font-size: var(--tiny-font-size);
+    color: var(--title-color);
+    font-weight: var(--font-medium);
+    margin-left: var(--mb-0-25);
+}
+
+.clock_date{
+    text-align: center;
+    font-size: var(--small-font-size);
+    font-weight: var(--font-medium);
+}
+
+.clock_quote{
+    text-align: center;
+    font-size: var(--small-font-size);
+    font-weight: var(--font-medium);
+    padding-bottom: 15px;
+
+}
+
+
+/* =============< Media Query >================ */
+/* For large devices */
+@media screen and (min-width: 968px) {
+    .container {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .clock__logo {
+      margin-bottom: 3rem;
+    }
+  }
